@@ -11,7 +11,7 @@ import importlib
 
 from ioflo.aid.sixing import *
 
-_modules = ['resting', 'behaving', ]
+_modules = ['behaving', ]
 
 for m in _modules:
-    importlib.import_module(".{0}".format(m), package='bluepea.core')
+    importlib.import_module(".{0}".format(m), package='core')
