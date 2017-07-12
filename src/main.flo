@@ -1,0 +1,14 @@
+# Main Flow
+
+house main
+
+  framer setup be active
+    frame startup
+      print Starting Server
+      bid start server
+
+  framer server be inactive via .main.server
+    frame server
+      do road server open at enter
+      do road server service
+      do road server close at exit
