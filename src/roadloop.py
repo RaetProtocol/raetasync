@@ -14,7 +14,7 @@ from raet.raeting import AutoMode
 console = getConsole()
 console.reinit(verbosity=console.Wordage.concise)
 
-def serviceStacks(stacks, duration=1.0, period=0.1):
+def serviceStacks(stacks, duration=1.0, period=0.125):
     '''
     Utility method to service queues. Call from test method.
     '''
@@ -36,16 +36,19 @@ def threeway():
     alpha = raet.road.stacking.RoadStack(name='alpha',
                                          ha=('0.0.0.0', 7531),
                                          main=True,
+                                         mutable=True,
                                          auto=AutoMode.always.value)
 
     beta = raet.road.stacking.RoadStack(name='beta',
                                         ha=('0.0.0.0', 7532),
                                         main=True,
+                                        mutable=True,
                                         auto=AutoMode.always.value)
 
     gamma = raet.road.stacking.RoadStack(name='gamma',
                                         ha=('0.0.0.0', 7533),
                                         main=True,
+                                        mutable=True,
                                         auto=AutoMode.always.value)
 
 
