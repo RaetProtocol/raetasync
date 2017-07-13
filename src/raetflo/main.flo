@@ -20,13 +20,13 @@ house alpha
       go next
 
     frame joiner
-      do road stack remote add join at enter per conf .main.road.beta.conf
-      do road stack remote add join at enter per conf .main.road.gamma.conf
+      do road stack remote add join at enter per conf beta.conf
+      do road stack remote add join at enter per conf gamma.conf
       go next if elapsed > 1.5
 
     frame talker
-      do road stack message all at enter per message .main.road.message
-      go next if elapsed >= 3.0
+      do road stack message all at enter per message message
+      go next if elapsed >= 1.5
 
     frame printer
       do road stack print at enter
@@ -56,12 +56,12 @@ house beta
       go next
 
     frame joiner
-      do road stack remote add join at enter per conf .main.road.gamma.conf
+      do road stack remote add join at enter per conf gamma.conf
       go next if elapsed > 1.5
 
     frame talker
-      do road stack message all at enter per message .main.road.message
-      go next if elapsed >= 3.0
+      do road stack message all at enter per message message
+      go next if elapsed >= 1.5
 
     frame printer
       do road stack print at enter
@@ -94,8 +94,8 @@ house gamma
       go next if elapsed > 1.5
 
     frame talker
-      do road stack message all at enter per message .main.road.message
-      go next if elapsed >= 3.0
+      do road stack message all at enter per message message
+      go next if elapsed >= 1.5
 
     frame printer
       do road stack print at enter
