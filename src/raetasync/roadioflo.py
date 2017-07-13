@@ -6,7 +6,7 @@ Runs ioflo plan from command line shell
 
 Usage:
 
-roadioflo -v concise -r -p 0.0625 -n roadioflo -f /Data/Code/public/raetasync/src/raetasync/main.flo -b raetasync.core
+python3 -mroadioflo -v concise -r -p 0.0625 -n roadioflo -f /Data/Code/public/raetasync/src/raetasync/main.flo -b raetasync.core
 
 """
 import sys
