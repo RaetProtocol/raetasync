@@ -71,6 +71,13 @@ def serviceStack(stack, duration=4.0):
         gevent.sleep(0.125)
         stack.store.advanceStamp(0.125)
 
+def closeStack(stack):
+    """
+    Close RoadStack
+    """
+    stack.server.close()  # close the UDP socket
+    stack.keep.clearAllDir()  # clear persisted data
+
 if __name__ == "__main__":
     print("********** Gevent Example Threeway Road *****************\n")
     gevent.signal(signal.SIGQUIT, gevent.kill)
@@ -110,4 +117,6 @@ if __name__ == "__main__":
 
     gevent.joinall([alphaThread, betaThread, gammaThread])
 
-
+    closeStack(alpha)
+    closeStack(beta)
+    closeStack(gamma)
