@@ -16,7 +16,6 @@ import raet
 # Import ioflo libs
 from ioflo.aid.sixing import *
 from ioflo.aid import odict
-from ioflo.aio import WireLog
 from ioflo.base import doify
 from ioflo.aid import getConsole
 

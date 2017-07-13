@@ -32,4 +32,5 @@ def main():
                         statistics=args.statistics)
 
 if __name__ == '__main__':
+    print("********** Ioflo Example Threeway Road *****************\n")
     main()
