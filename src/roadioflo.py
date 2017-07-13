@@ -6,7 +6,8 @@ Runs ioflo plan from command line shell
 
 Usage:
 
-python3 -mroadioflo -v concise -r -p 0.0625 -n roadioflo -f /Data/Code/public/raetasync/src/raetasync/main.flo -b raetasync.core
+$ cd /data/code/public/raetasync/src/
+$ python3 roadioflo.py -v concise -r -p 0.0625 -n raetflo -f /Data/Code/public/raetasync/src/raetflo/main.flo -b raetflo.core
 
 """
 import sys
@@ -14,7 +15,7 @@ import ioflo.app.run
 
 def main():
     """ Main entry point for ioserve CLI"""
-    from raetasync import __version__
+    from raetflo import __version__
     args = ioflo.app.run.parseArgs(version=__version__)  # inject  version here
 
     ioflo.app.run.run(  name=args.name,

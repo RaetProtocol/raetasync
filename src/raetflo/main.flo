@@ -1,0 +1,106 @@
+# Main Flow
+
+house alpha
+
+  init main.road.conf with name alpha host "0.0.0.0" port 7531
+
+  framer stacker be active via .main.road.
+    frame stacker
+      do road stack open at enter
+      do road stack service
+      do road stack close at exit
+
+
+
+  init .main.road.beta.conf with name beta host localhost port 7532
+  init .main.road.gamma.conf with name gamma host localhost port 7533
+  init .main.road.message with subject "Introduction" content "Hello from alpha"
+
+  framer connector be active via .main.road.
+    frame waiter
+      go next
+
+    frame joiner
+      do road stack remote add join at enter per conf .main.road.beta.conf
+      do road stack remote add join at enter per conf .main.road.gamma.conf
+      go next if elapsed > 1.5
+
+    frame talker
+      do road stack message all at enter per message .main.road.message
+      go next if elapsed >= 3.0
+
+    frame printer
+      do road stack print at enter
+      go next
+
+    frame stopper
+      bid stop all
+
+
+house beta
+
+  init main.road.conf with name beta host "0.0.0.0" port 7532
+
+  framer stacker be active via .main.road.
+    frame stacker
+      do road stack open at enter
+      do road stack service
+      do road stack close at exit
+
+
+  init .main.road.alpha.conf with name alpha host localhost port 7531
+  init .main.road.gamma.conf with name gamma host localhost port 7533
+  init .main.road.message with subject "Introduction" content "Hello from beta"
+
+  framer connector be active via .main.road.
+    frame waiter
+      go next
+
+    frame joiner
+      do road stack remote add join at enter per conf .main.road.gamma.conf
+      go next if elapsed > 1.5
+
+    frame talker
+      do road stack message all at enter per message .main.road.message
+      go next if elapsed >= 3.0
+
+    frame printer
+      do road stack print at enter
+      go next
+
+    frame stopper
+      bid stop all
+
+
+house gamma
+
+  init main.road.conf with name gamma host "0.0.0.0" port 7533
+
+  framer stacker be active via .main.road.
+    frame stacker
+      do road stack open at enter
+      do road stack service
+      do road stack close at exit
+
+
+  init .main.road.alpha.conf with name alpha host localhost port 7531
+  init .main.road.beta.conf with name beta host localhost port 7532
+  init .main.road.message with subject "Introduction" content "Hello from gamma"
+
+  framer connector be active via .main.road.
+    frame waiter
+      go next
+
+    frame joiner
+      go next if elapsed > 1.5
+
+    frame talker
+      do road stack message all at enter per message .main.road.message
+      go next if elapsed >= 3.0
+
+    frame printer
+      do road stack print at enter
+      go next
+
+    frame stopper
+      bid stop all
