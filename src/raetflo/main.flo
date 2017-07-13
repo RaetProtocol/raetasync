@@ -11,7 +11,6 @@ house alpha
       do road stack close at exit
 
 
-
   init .main.road.beta.conf with name beta host localhost port 7532
   init .main.road.gamma.conf with name gamma host localhost port 7533
   init .main.road.message with subject "Introduction" content "Hello from alpha"
