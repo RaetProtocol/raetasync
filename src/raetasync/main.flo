@@ -2,13 +2,11 @@
 
 house main
 
-  framer setup be active
-    frame startup
-      print Starting Server
-      bid start server
+  init main.road.name with alpha
+  init main.road.port with 7531
 
-  framer server be inactive via .main.server
-    frame server
-      do road server open at enter
-      do road server service
-      do road server close at exit
+  framer stacker be active via .main.road.
+    frame stacker
+      do road stack open at enter
+      do road stack service
+      do road stack close at exit

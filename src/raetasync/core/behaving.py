@@ -12,7 +12,7 @@ import os
 from collections import deque
 
 import raet
-et
+
 # Import ioflo libs
 from ioflo.aid.sixing import *
 from ioflo.aid import odict
@@ -34,7 +34,7 @@ frame stacker
 """
 
 @doify('RoadStackOpen', ioinits=odict(stack="",
-                                       name=odict(inode="", ival='server'),
+                                       tag=odict(inode="", ival='stacker'),
                                        host=odict(inode="", ival='0.0.0.0'),
                                        port=odict(inode="", ival=7531),))
 def roadStackOpen(self, **kwa):
@@ -52,20 +52,14 @@ def roadStackOpen(self, **kwa):
     Example:
         do road stack open at enter
     """
-    name = self.name.value
-    host = self.host.value
-    port = int(self.port.value)  # ensure int
-
-    stack = raet.road.stacking.RoadStack(name=name,
-                                          ha=(host, port),
+    self.stack.value = raet.road.stacking.RoadStack(name=self.tag.value,
+                                          ha=(self.host.value, int(self.port.value)),
                                           main=True,
-                                          auto=AutoMode.always.value)
-
-    self.stack.value = stack
+                                          auto=raet.raeting.AutoMode.always.value)
 
     console.concise("Opened road stack '{0}' at '{1}'\n".format(
-                            stack.name,
-                            stack.eha,))
+                            self.stack.value.name,
+                            self.stack.value.ha,))
 
 @doify('RoadStackService',ioinits=odict(stack=""))
 def roadStackService(self, **kwa):
@@ -80,8 +74,8 @@ def roadStackService(self, **kwa):
     Example:
         do road stack service
     """
-    if self.server.value:
-        self.server.value.serviceAll()
+    if self.stack.value:
+        self.stack.value.serviceAll()
 
 
 @doify('RoadStackClose', ioinits=odict(stack="",))
@@ -98,12 +92,12 @@ def roadStackClose(self, **kwa):
         do road stack close at exit
     """
     if self.stack.value:
-        self.stack.server.close()  # close the UDP socket
-        self.stack.keep.clearAllDir()
+        self.stack.value.server.close()  # close the UDP socket
+        self.stack.value.keep.clearAllDir()
 
-        console.concise("Closed server '{0}' at '{1}'\n".format(
-                            self.valet.name,
-                            self.valet.value.servant.eha))
+        console.concise("Closed raod stack '{0}' at '{1}'\n".format(
+                            self.stack.value.name,
+                            self.stack.value.ha))
 
 
 
