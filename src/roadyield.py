@@ -157,15 +157,14 @@ def run(threads, delay=0.125, duration=4.0):
     timer = ioflo.aid.timing.Timer(duration=duration)
     while not timer.expired and threads:
         time.sleep(delay)
-        agains = []
-        for thread in threads:
+        alives, threads = threads, []
+        for thread in alives:
             try:
                 next(thread)
             except StopIteration as  ex:
                 pass
             else:
-                agains.append(thread)
-        threads = list(agains)  # copy
+                threads.append(thread)
 
 
 if __name__ == "__main__":
